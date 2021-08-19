@@ -6,6 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="style.css" />
     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        //To minimise the height of chatbox
+        $(document).ready(function() {
+            window.addEventListener('dfMessengerLoaded', function (event) {
+            $r1 = document.querySelector("df-messenger");
+            $r2 = $r1.shadowRoot.querySelector("df-messenger-chat");
+            $r3 = $r2.shadowRoot.querySelector("df-messenger-user-input"); //for other mods
+            var sheet = new CSSStyleSheet;
+            // manage box height from here
+            sheet.replaceSync( `div.chat-wrapper[opened="true"] { height: 450px }`);
+            $r2.shadowRoot.adoptedStyleSheets = [ sheet ];
+            });
+        });
+    </script>
     <title>Guess My Number!</title>
   <df-messenger
   intent="WELCOME"
